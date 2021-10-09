@@ -32,26 +32,38 @@
 
 import SwiftUI
 
-extension View {
-    func northWestShadow(
-        radius: CGFloat = 16,
-        offset: CGFloat = 6
-    ) -> some View {
-        return self
-            .shadow(
-                color: .highlight, radius: radius, x: -offset, y: -offset)
-            .shadow(
-                color: .shadow, radius: radius, x: offset, y: offset)
-    }
-    
-    func southEastShadow(
-        radius: CGFloat = 16,
-        offset: CGFloat = 6
-    ) -> some View {
-        return self
-            .shadow(
-                color: .shadow, radius: radius, x: -offset, y: -offset)
-            .shadow(
-                color: .highlight, radius: radius, x: offset, y: offset)
-    }
+struct BevelText: View {
+  let text: String
+  let width: CGFloat
+  let height: CGFloat
+
+  var body: some View {
+    Text(text)
+          .frame(width: width, height: height)
+          .background(
+            ZStack {
+                Capsule()
+                    .fill(Color.element)
+                    .northWestShadow(radius: 3, offset: 1)
+                Capsule()
+                    .inset(by: 3)
+                    .fill(Color.element)
+                    .southEastShadow(radius: 1, offset: 1)
+            }
+          )
+
+  }
 }
+
+struct BevelText_Previews: PreviewProvider {
+  static var previews: some View {
+    ZStack {
+      Color.element
+      BevelText(
+        text: "R: ??? G: ??? B: ???", width: 200, height: 48)
+    }
+    .frame(width: 300, height: 100)
+    .previewLayout(.sizeThatFits)
+  }
+}
+
