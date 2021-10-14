@@ -32,26 +32,17 @@
 
 import SwiftUI
 
-extension View {
-    func northWestShadow(
-        radius: CGFloat = 16,
-        offset: CGFloat = 6
-    ) -> some View {
-        return self
-            .shadow(
-                color: .highlight, radius: radius, x: -offset, y: -offset)
-            .shadow(
-                color: .shadow, radius: radius, x: offset, y: offset)
+struct ColorSlider: View {
+  @Binding var value: Double
+  var trackColor: Color
+  var body: some View {
+    HStack {
+      Text("0")
+      Slider(value: $value)
+        .accentColor(trackColor)
+      Text("255")
     }
-    
-    func southEastShadow(
-        radius: CGFloat = 16,
-        offset: CGFloat = 6
-    ) -> some View {
-        return self
-            .shadow(
-                color: .shadow, radius: radius, x: -offset, y: -offset)
-            .shadow(
-                color: .highlight, radius: radius, x: offset, y: offset)
-    }
+    .font(.subheadline)
+    .padding(.horizontal)
+  }
 }
