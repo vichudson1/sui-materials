@@ -142,7 +142,7 @@ struct SwiftCalcView: View {
                 pendingOperation = .none
               } else {
                 // Add Bug Fix Here
-                display = "Error"
+                display = ""
               }
             }, label: {
               Text("M+")
@@ -336,6 +336,9 @@ struct SwiftCalcView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    SwiftCalcView()
+    Group {
+      SwiftCalcView()
+      
+    }
   }
 }
