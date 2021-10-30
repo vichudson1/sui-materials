@@ -34,7 +34,12 @@ import SwiftUI
 
 struct ChallengeView: View {
   var body: some View {
-    Text("Hello World!")
+      HStack(alignment: .firstTextBaseline) {
+          Text("Welcome to Kuchi").font(.caption)
+          Text("Welcome to Kuchi").font(.title)
+          Button(action: {}, label: { Text("OK").font(.body) })
+        }
+
   }
 }
 
