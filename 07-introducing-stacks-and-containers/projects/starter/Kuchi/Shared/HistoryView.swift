@@ -55,7 +55,7 @@ struct History: Hashable {
 }
 
 struct HistoryView: View {
-  let history = History.random(count: 2000)
+  let history = History.random(count: 1000)
   let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
@@ -106,7 +106,15 @@ struct HistoryView: View {
   }
   
   var body: some View {
-    EmptyView()
+      LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+          ScrollView {
+              Section(header: header) {
+                  ForEach(history, id: \.self) { element in
+                      getElement(element)
+                  }
+              }
+          }
+      }
   }
 }
 
